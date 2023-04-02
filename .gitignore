@@ -1,32 +1,34 @@
-# Prerequisites
-*.d
+using System;
+using System.IO;
+using System.Linq;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+class Program
+{
+    static void Main()
+    {
+        // Read the input file as a string
+        string input = File.ReadAllText("input.txt");
 
-# Precompiled Headers
-*.gch
-*.pch
+        // Split the string into an array of strings using commas as separators
+        string[] inputNumbers = input.Split(',');
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+        // Convert the array of strings into an array of integers
+        int[] numbers = new int[inputNumbers.Length];
+        for (int i = 0; i < inputNumbers.Length; i++)
+        {
+            numbers[i] = int.Parse(inputNumbers[i]);
+        }
 
-# Fortran module files
-*.mod
-*.smod
+        // Sort the array of integers in ascending order
+        Array.Sort(numbers);
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+        // Convert the sorted array of integers into a comma-separated string
+        string output = string.Join(",", numbers);
 
-# Executables
-*.exe
-*.out
-*.app
+        // Write the output string to a file
+        File.WriteAllText("output.txt", output);
+
+        // Print a message to indicate that the program is done
+        Console.WriteLine("The numbers have been sorted and written to output.txt.");
+    }
+}
